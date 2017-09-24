@@ -1,0 +1,7 @@
+# Our security policy
+In-scope: www.rifa.io
+Contact: security@rifa.io
+Contact: https://www.rifa.io/security/contact
+Encryption: https://www.rifa.io/security/pgp-key.txt
+Discolsure: Full
+Acknowledgement: https://www.rifa.io/security
