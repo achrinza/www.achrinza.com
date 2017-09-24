@@ -2,7 +2,9 @@
     "name": "Rifa Achrinza",
     "short_name": "Rifa",
     "lang": "en",
-    "background_color": "#4A148C",
+    "background_color": "#fff",
+    "theme_color": "#4A148C",
     "icons": [
-    ]
+    ],
+    "start_url": "."
 }
