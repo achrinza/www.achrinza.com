@@ -2,10 +2,11 @@
 <html amp lang="en">
 <head prefix="og: http://ogp.me/ns#">
     <!-- UHNzdC4gSSdtIHNlY3JldGx5IGdheS4gOlA=
-        ALL URLs are absolute URLs ("https://www.rizsite.com/beta/") . Replace them if necessary.
+        ALL URLs are absolute URLs ("https://www.rizsite.com/") . Replace them if necessary.
 
         TODO:
-        * Re-organise CSS
+        * Change license?
+        * Add the rest of css
     -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,13 +14,13 @@
     <meta name="theme-color" content="#4A148C">
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, shrink-to-fit=no, viewport-fit=cover, width=device-width">
     
-    <link rel="apple-touch-startup-image" href="https://www.rizsite.com/beta/static/img/skeleton-ui.svg">
-    <link rel="author" type="text/html" href="https://www.rizsite.com/beta/about">
-    <link rel="author" type="text/plain" href="https://www.rizsite.com/beta/humans.txt">
-    <link rel="canonical" href="https://www.rizsite.com/beta/">
+    <link rel="apple-touch-startup-image" href="https://www.rizsite.com/static/img/skeleton-ui.svg">
+    <link rel="author" type="text/html" href="https://www.rizsite.com/about">
+    <link rel="author" type="text/plain" href="https://www.rizsite.com/humans.txt">
+    <link rel="canonical" href="https://www.rizsite.com/">
     <link rel="dns-prefetch" href="https://cdn.ampproject.org/">
     <link rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
-    <link rel="manifest" href="https://www.rizsite.com/beta/static/manifest.json">
+    <link rel="manifest" href="https://www.rizsite.com/static/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons%7CRoboto:300,400">
     <link rel="stylesheet" href="https://use.fontawesome.com/e10134bc93.css">
     
@@ -28,7 +29,7 @@
     
     <meta property="og:title" content="Rifa Achrinza">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rizsite.com/beta/">
+    <meta property="og:url" content="https://www.rizsite.com/">
     <meta property="og:image:secure_url" content="https://static.rifa.io/image/logo.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="500">
@@ -40,7 +41,7 @@
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "https://www.rizsite.com/beta/#website",
+        "@id": "https://www.rizsite.com/#website",
         "accessMode": [
             "textual",
             "visual"
@@ -65,7 +66,7 @@
         "accessibilitySummary": "Can be accessed with a keyboard, mouse, touch interface or a combination, without issues. Does not have any sensory hazards and animations are kept to a minimum.",
         "author": {
             "@type": "Person",
-            "@id": "https://www.rizsite.com/beta/about"
+            "@id": "https://www.rizsite.com/about"
         },
         "headline": "Rifa Achrina: Student and Front-end Web Designer",
         "inLanguage": "English",
@@ -190,6 +191,7 @@
          ******************/
         .self-intro {
             background-color: #fff;
+            text-align: center;
             padding: 0 10px;
             position: static;
         }
@@ -200,10 +202,10 @@
             max-width: 150px;
         }
 
-        .self-intro__img--fallback { /* Fallback img for nojs */ /* NEED TO FIX THIS. FALLBACK IMG REMOVED CURRENTLY DUE TO ISSUES. */
-            border-radius: 100%;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-            object-fit: contain;
+        .self-intro__img--fallback[fallback] { /* Fallback img for nojs */
+            box-shadow: none;
+            width: 100%;
+            height: 100%;
             max-width: 150px;
             max-height: 150px;
         }
@@ -242,6 +244,7 @@
             color: #fff;
             font-size: 1em;
             text-align: center;
+            text-decoration: none;
             letter-spacing: 1.5px;
             cursor: pointer;
             transition: .15s top, .15s left;
@@ -249,11 +252,17 @@
             border: 1px solid #ddd;
             position: relative;
             padding: 9px 12px;
-            margin: 6px 12px 0 0;
+            margin: 6px auto 0 auto;
+            width: 75%;
+            min-width: 250px;
         }
 
         .btn--social:hover {
             top: -1px;
+        }
+
+        .btn--social-bio {
+            background-color: #4A148C;
         }
 
         .btn--social-github {
@@ -291,67 +300,9 @@
         .section--header .section-content-wrapper {
             text-align: center;
             padding-bottom: 7em;
-        }
-
-        .section--header__technology-icons {
-            color: #e3f2fd;
-            font-size: 8em;
-            opacity: .3;
-            position: absolute;
-            top: 0;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        @keyframes techIcons1 {
-            0%{ transform: translateY(500%); }
-            100%{ transform: translateY(-200%); }
-        }
-        @keyframes techIcons2 {
-            0%{ transform: translateY(400%); }
-            100%{ transform: translateY(-300%); }
-        }
-
-        @keyframes techIcons3 {
-            0%{ transform: translateY(300%); }
-            100%{ transform: translateY(-400%); }
-        }
-
-        @keyframes techIcons4 {
-            0%{ transform: translateY(200%); }
-            100%{ transform: translateY(-500%); }
-        }
-
-        @keyframes techIcons5 {
-            0%{ transform: translateY(100%); }
-            100%{ transform: translateY(-600%); }
-        }
-
-
-        .section--header__technology-icons .fa:nth-child(1) {
-            animation: 5s techIcons1 infinite;
-        }
-        .section--header__technology-icons .fa:nth-child(2) {
-            animation: 10s techIcons2 infinite;
-        }
-
-        .section--header__technology-icons .fa:nth-child(3) {
-            animation: 15s techIcons3 infinite;
-        }
-
-        .section--header__technology-icons .fa:nth-child(4) {
-            animation: 20s techIcons4 infinite;
-        }
-
-        .section--header__technology-icons .fa:nth-child(5) {
-            animation: 25s techIcons5 infinite;
-        }
-
-
-        .section--header__technology-icons .fa {
-            text-align: center;
-            text-shadow: 1px 1px 1px #000;
-            display: block;
+            /* This is to move the text in front of the scrolling technology icons, making them highlightable. */
+            position: relative;
+            z-index: 2;
         }
 
         .section--header__title {
@@ -366,13 +317,29 @@
         .section--header__text {
             color: #dedede;
             font-weight: 300;
+            line-height: 36px;
             /*text-align: center;*/
             animation: .15s ease-in 1s both fadeIn;
+        }
+
+        .section--header__text em {
+            border-bottom: 2px solid yellow;
         }
 
         .section--header-svg-slant {
             display: none;
         }
+
+
+
+
+
+        /************************
+         * TECHNOLOGY ICONS CSS *
+         ************************/
+         .section--header__technology-icons .fa {
+            display: none;
+         }
 
 
 
@@ -437,6 +404,9 @@
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 text-decoration: none;
+                display: inline-block;
+                height: 100%;
+                width: 100%;
             }
             .navbar-item__dropdown {
                 background-color: #fff;
@@ -475,10 +445,155 @@
 
 
 
+            /************************
+             * TECHNOLOGY ICONS CSS *
+             ************************/
+            .section--header__technology-icons {
+                color: #e3f2fd;
+                font-size: 8em;
+                opacity: .3;
+                position: absolute;
+                top: 0;
+                overflow: hidden;
+                width: 100%;
+            }
+
+
+            @-o-keyframes techIcons1 {
+                0%{ transform: translateY(500%); visibility: visible; }
+                100%{ transform: translateY(-200%); visibility: visible; }
+            }
+            @-o-keyframes techIcons2 {
+                0%{ transform: translateY(400%); visibility: visible; }
+                100%{ transform: translateY(-300%); visibility: visible; }
+            }
+            @-o-keyframes techIcons3 {
+                0%{ transform: translateY(300%); visibility: visible; }
+                100%{ transform: translateY(-400%); visibility: visible; }
+            }
+            @-o-keyframes techIcons4 {
+                0%{ transform: translateY(200%); visibility: visible; }
+                100%{ transform: translateY(-500%); visibility: visible; }
+            }
+            @-o-keyframes techIcons5 {
+                0%{ transform: translateY(100%); visibility: visible; }
+                100%{ transform: translateY(-600%); visibility: visible; }
+            }
+
+            @-moz-keyframes techIcons1 {
+                0%{ transform: translateY(500%); visibility: visible; }
+                100%{ transform: translateY(-200%); visibility: visible; }
+            }
+            @-moz-keyframes techIcons2 {
+                0%{ transform: translateY(400%); visibility: visible; }
+                100%{ transform: translateY(-300%); visibility: visible; }
+            }
+            @-moz-keyframes techIcons3 {
+                0%{ transform: translateY(300%); visibility: visible; }
+                100%{ transform: translateY(-400%); visibility: visible; }
+            }
+            @-moz-keyframes techIcons4 {
+                0%{ transform: translateY(200%); visibility: visible; }
+                100%{ transform: translateY(-500%); visibility: visible; }
+            }
+            @-moz-keyframes techIcons5 {
+                0%{ transform: translateY(100%); visibility: visible; }
+                100%{ transform: translateY(-600%); visibility: visible; }
+            }
+
+            @-webkit-keyframes techIcons1 {
+                0%{ transform: translateY(500%); visibility: visible; }
+                100%{ transform: translateY(-200%); visibility: visible; }
+            }
+            @-webkit-keyframes techIcons2 {
+                0%{ transform: translateY(400%); visibility: visible; }
+                100%{ transform: translateY(-300%); visibility: visible; }
+            }
+            @-webkit-keyframes techIcons3 {
+                0%{ transform: translateY(300%); visibility: visible; }
+                100%{ transform: translateY(-400%); visibility: visible; }
+            }
+            @-webkit-keyframes techIcons4 {
+                0%{ transform: translateY(200%); visibility: visible; }
+                100%{ transform: translateY(-500%); visibility: visible; }
+            }
+            @-webkit-keyframes techIcons5 {
+                0%{ transform: translateY(100%); visibility: visible; }
+                100%{ transform: translateY(-600%); visibility: visible; }
+            }
+
+            @keyframes techIcons1 {
+                0%{ transform: translateY(500%); visibility: visible; }
+                100%{ transform: translateY(-200%); visibility: visible; }
+            }
+            @keyframes techIcons2 {
+                0%{ transform: translateY(400%); visibility: visible; }
+                100%{ transform: translateY(-300%); visibility: visible; }
+            }
+            @keyframes techIcons3 {
+                0%{ transform: translateY(300%); visibility: visible; }
+                100%{ transform: translateY(-400%); visibility: visible; }
+            }
+            @keyframes techIcons4 {
+                0%{ transform: translateY(200%); visibility: visible; }
+                100%{ transform: translateY(-500%); visibility: visible; }
+            }
+            @keyframes techIcons5 {
+                0%{ transform: translateY(100%); visibility: visible; }
+                100%{ transform: translateY(-600%); visibility: visible; }
+            }
+
+            .section--header__technology-icons .fa {
+                text-align: center;
+                text-shadow: 1px 1px 1px #000;
+                will-change: transform;
+                display: block;
+                visibility: hidden;
+            }
+
+            .section--header__technology-icons .fa:nth-child(1) {
+                -o-animation: 5s techIcons1 infinite both;
+                -moz-animation: 5s techIcons1 infinite both;
+                -webkit-animation: 5s techIcons1 infinite both;
+                animation: 5s techIcons1 infinite both;
+            }
+            .section--header__technology-icons .fa:nth-child(2) {
+                -o-animation: 10s techIcons2 infinite both;
+                -moz-animation: 10s techIcons2 infinite both;
+                -webkit-animation: 10s techIcons2 infinite both;
+                animation: 10s techIcons2 infinite both;
+            }
+
+            .section--header__technology-icons .fa:nth-child(3) {
+                -o-animation: 15s techIcons3 infinite both;
+                -moz-animation: 15s techIcons3 infinite both;
+                -webkit-animation: 15s techIcons3 infinite both;
+                animation: 15s techIcons3 infinite both;
+            }
+
+            .section--header__technology-icons .fa:nth-child(4) {
+                -o-animation: 20s techIcons4 infinite both;
+                -moz-animation: 20s techIcons4 infinite both;
+                -webkit-animation: 20s techIcons4 infinite both;
+                animation: 20s techIcons4 infinite both;
+            }
+
+            .section--header__technology-icons .fa:nth-child(5) {
+                -o-animation: 25s techIcons5 infinite both;
+                -moz-animation: 25s techIcons5 infinite both;
+                -webkit-animation: 25s techIcons5 infinite both;
+                animation: 25s techIcons5 infinite both;
+            }
+
+
+
+
+
             /******************
              * SELF INTRO CSS *
              ******************/
             .self-intro {
+                text-align: left;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                 border-radius: 12px;
                 padding: 1em;
@@ -503,7 +618,6 @@
             }
 
             .self-intro__name {
-                text-align: left;
                 display: inline-block;
             }
 
@@ -516,6 +630,9 @@
              ******************/
             .btn--social {
                 display: inline-block;
+                margin-right: 12px;
+                width: auto;
+                min-width: auto;
             }
 
             .section--header-svg-slant {
@@ -542,7 +659,7 @@
                         <li class="navbar-item navbar-item--nested"><a href="/about/website">Website</a></li>
                     </ul>
                 </li>
-                <li class="navbar-item"><a href="/projects">Project</a></li>
+                <li class="navbar-item"><a href="/projects">Projects</a></li>
             </ul>
         </nav>
 
@@ -554,7 +671,7 @@
             <div class="section-wrapper">
                 <div class="section-content-wrapper">
                     <h1 class="section--header__title">Student & Developer</h1>
-                    <h2 class="section--header__text">Creating fast and responsive websites</h2>
+                    <h2 class="section--header__text">Creating <em>fast</em> and <em>responsive</em> websites<br>while studying</h2>
                 </div>
 
                 <div class="section--header__technology-icons">
@@ -562,7 +679,7 @@
                     <i class="fa fa-html5" aria-hidden="true"></i>
                     <i class="fa fa-css3" aria-hidden="true"></i>
                     <i class="fa fa-github" aria-hidden="true"></i>
-                    <i class="fa fa-google" aria-hidden="true"></i>
+                    <i class="fa fa-universal-access" aria-hidden="true"></i>
                 </div>
 
                 <div class="self-intro">
@@ -574,18 +691,16 @@
                             srcset="/Users/audipramananda/Desktop/rifa/rifa.io/static/img/self-icon.webp"
                             alt="A portrait of Rifa."
                             noloading>
-                            <img fallback class="self-intro__img--fallback" srcset="/Users/audipramananda/Desktop/rifa/rifa.io/static/img/self-icon.webp"
+                            <img fallback class="self-intro__img--fallback" src="/Users/audipramananda/Desktop/rifa/rifa.io/static/img/self-icon.jpg"
                             alt="A portrait of Rifa.">
                         </amp-img>
                     </span>
                     <span class="self-intro__text-wrapper">
                         <h3 class="self-intro__name">Rifa Achrinza</h3>
                         <p class="self-intro__description">Hi there! I'm Rifa, a student who's passionate about Web Designing since 2011. Information on my projects and accomplishments are compiled in this website.</p>
-
-                        <a class="btn btn--social btn--social-github"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
-
+                        <a class="btn btn--social btn--social-bio" href="https://www.rizsite.com/about/me"><i class="fa fa-link" aria-hidden="true"></i>Bio</a>
+                        <a class="btn btn--social btn--social-github" href="https://github.com/etzriz"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
                         <a class="btn btn--social btn--social-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i>Linkedin</a>
-
                         <a class="btn btn--social btn--social-instagram"><i class="fa fa-instagram" aria-hidden="true"></i>Instagram</a>
                     </span>
                 </div>
@@ -633,16 +748,11 @@
     <footer class="footer">
         <p class="sr-only">Links</p>
         <ul>
-            <li><a href="https://www.rizsite.com/beta/accessibility">accessibility</a></li>
-            <li><a href="https://www.rizsite.com/beta/security">security</a></li>
-            <li><a href="https://www.rizsite.com/beta/license">license</a></li>
-            <li><a href="https://www.rizsite.com/beta/sitemap">sitemap</a></li>
-            <li><a href="https://www.rizsite.com/beta/cookies">cookie policy</a></li>
+            <li><a href="https://www.rizsite.com/accessibility">accessibility</a></li>
+            <li><a href="https://www.rizsite.com/security">security</a></li>
+            <li><a href="https://www.rizsite.com/license">license</a></li>
+            <li><a href="https://www.rizsite.com/sitemap">sitemap</a></li>
+            <li><a href="https://www.rizsite.com/cookies">cookie policy</a></li>
     </footer>
-    <!--<svg width="100%" height="100%" viewBox="0 0 100 100" style="border: 1px solid #000">
-        <rect x='6' y='0' width='10' height='99' fill="#673AB7" style="transform: rotate(3deg)"/>
-        <rect x='20' y='60' width='10' height='100' fill="#F44336" style="transform: rotate(-22deg)"/>
-        <circle cx="37" cy="25" r="20" fill="#2196F3">
-    </svg>-->     
 </body>
 </html>
