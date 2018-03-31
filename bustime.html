@@ -277,7 +277,7 @@
 </head>
 <body id="body">
 
-    <small>Build 10</small>
+    <small>Build 11</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
@@ -363,8 +363,8 @@
             [class]="'bustimes' +
             ( busTimesActive == 1 ? ' bustimes--active' :
             ( busTimesActive == null ? ' bustimes--init' : '' ))">
-            <amp-list id="bustimes-list" layout="fill" template="list">
-            </amp-list>
+            <!-- <amp-list id="bustimes-list" layout="fill" template="list">
+            </amp-list> -->
             <h2 class="bustimes__code">00000</h2>
             <p class="bustimes__address">Singapore Road</p>
 
