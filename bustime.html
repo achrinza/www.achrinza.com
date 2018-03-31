@@ -11,11 +11,13 @@
     <title>Bus Arrival</title>
 
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
     <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
     <script async custom-element="amp-live-list" src="https://cdn.ampproject.org/v0/amp-live-list-0.1.js"></script>
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
@@ -30,7 +32,7 @@
             100% {
                 height: 2.5em;
                 width: 80%;
-                transform: translateY(1em);
+                transform: translateY(2em);
             }
         }
 
@@ -38,7 +40,7 @@
             0% {
                 width: 80%;
                 box-shadow: 3px 5px 20px 1px rgba(0, 0, 0, 0.30);
-                transform: translateY(1em);
+                transform: translateY(2em);
             }
             100% {
                 width: 100%;
@@ -56,7 +58,7 @@
             100% {
                 width: 80%;
                 box-shadow: 3px 5px 20px 1px rgba(0, 0, 0, 0.30);
-                transform: translateY(1em);
+                transform: translateY(2em);
             }
         }
 
@@ -98,9 +100,45 @@
             }
         }
 
+        @keyframes list-entry-inactive {
+            0% {
+                margin: 1em 0;
+                background-color: #fff;
+                box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.30);
+            }
+            100% {
+                margin: 0;
+                background-color: transparent;
+                box-shadow: none;
+            }
+        }
+
+        @keyframes list-entry-active {
+            0% {
+                margin: 0;
+                background-color: transparent;
+                box-shadow: none;
+            }
+            100% {
+                margin: 1em 0;
+                background-color: #fff;
+                box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.30);
+            }
+        }
+
+        @keyframes list-entry__collapsable-active {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         body {
             background-color: #F9F9FA;
             font-family: Arial, sans-serif;
+            overflow-y: scroll;
         }
 
         .wrapper {
@@ -111,27 +149,23 @@
         
         .searchbar__input {
             height: 2.5em;
-            width: 80%;
             max-width: 980px;
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             margin: 0 auto;
-            margin-bottom: 1em;
             padding: .5em;
             border: none;
             z-index: 10000;
             display: block;
             background-color: #fff;
             font-size: 16px;
-            animation: .35s searchbar-inactive;
+            animation: .35s searchbar-inactive both;
             box-shadow: 3px 5px 20px 1px rgba(0, 0, 0, 0.30);
-            transform: translateY(1em);
             will-change: transform;
             will-change: width;
             -webkit-appearance: none;
-            -webkit-backface-visibility: hidden;
         }
 
         .searchbar__input--init {
@@ -165,19 +199,34 @@
         }
 
         .searchbar__input--active ~ .busstops {
-            display: block;
             animation: .35s .5s busstops-active both;
             transform: translateY(4em);
+            overflow: visible;
         }
 
         .list-entry {
             padding: .5em;
+            border: none;
             border-bottom: 1px solid #ddd;
             display: block;
+            animation: .35s list-entry-inactive;
         }
 
         .list-entry--easter:not([hidden]) {
-            animation: .35s list-entry--easter-active;
+            animation: .35s list-entry--easter-active both;
+        }
+
+        .list-entry[expanded] {
+            animation: .35s list-entry-active both;
+        }
+
+        .list-entry > div {
+            background-color: transparent;
+            border: none;
+        }
+        
+        .list-entry__collapsable {
+            animation: .35s list-entry__collapsable-active both;
         }
     </style>
 
@@ -208,69 +257,55 @@
                             }
                         )
                         , AMP.navigateTo(url='#');
-                input-debounced: searchbar.submit"
+                    input-debounced: searchbar.submit,
+                        AMP.setState({ busStopCode: event.value })"
             [class]="'searchbar__input' + (searchbarActive ? ' searchbar__input--active' : '')">
 
             <div class="busstops" submit-success template="list"></div>
-
-            <div class="busstops">
-                <a class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
+            
+            <amp-accordion class="busstops" disable-session-states expand-single-section>
+                <section class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
                     [hidden]="easter != 1">
-                    <h3 class="list-entry__title">DIS Is NOT DA WAE</h3>
-                    <p class="list-entry__description">Pls stahp.</p>
-                </a>
+                    <div>
+                        <h3 class="list-entry__title">DIS Is NOT DA WAE</h3>
+                        <p class="list-entry__description">Pls stahp.</p>
+                    </div>
+                    <div></div>
+                </section>
 
-                <a class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
+                <section class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
                     [hidden]="easter != 2">
-                    <h3 class="list-entry__title">2 + 2 = 4 - 1 = 3</h3>
-                    <p class="list-entry__description">Quick maffs.</p>
-                </a>
+                    <div>
+                        <h3 class="list-entry__title">2 + 2 = 4 - 1 = 3</h3>
+                        <p class="list-entry__description">Quick maffs.</p>
+                    </div>
+                    <div>
+                        <a href="https://youtu.be/3M_5oYU-IsU?t=134">Obligatory link</a>
+                    </div>
+                </section>
 
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
+                <section class="list-entry list-entry--code-64069"
+                    on="tap: AMP.setState({ busStopCode: 64069 })">
+                    <div>
+                        <h3 class="list-entry__title">64069</h3>
+                        <p class="list-entry__description">Opp. Serangoon Sec</p>
+                    </div>
+                    <div class="list-entry__collapsable">
+                        <p>Test</p>
+                    </div>
+                </section>
 
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-
-                <a class="list-entry">
-                    <h3 class="list-entry__title">64069</h3>
-                    <p class="list-entry__description">Opp. Serangoon Sec</p>
-                </a>
-            </div>
+                <section class="list-entry list-entry--code-64061"
+                    on="tap: AMP.setState({ busStopCode: 64061 })">
+                    <div>
+                        <h3 class="list-entry__title">64069</h3>
+                        <p class="list-entry__description">Opp. Serangoon Sec</p>
+                    </div>
+                    <div class="list-entry__collapsable">
+                        <p>Test</p>
+                    </div>
+                </section>
+            </amp-accordion>
         </form>
 
         
