@@ -242,7 +242,7 @@
         .bustimes--active {
             padding: .5em;
             animation: .35s .5s bustimes-active both;
-            overflow: auto;
+            overflow-y: scroll;
         }
     </style>
 
@@ -269,7 +269,7 @@
 </head>
 <body id="body">
 
-    <small>Build 4</small>
+    <small>Build 5</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
