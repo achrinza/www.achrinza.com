@@ -39,13 +39,11 @@
                 width: 80%;
                 box-shadow: 3px 5px 20px 1px rgba(0, 0, 0, 0.30);
                 transform: translateY(1em);
-                position: relative;
             }
             100% {
                 width: 100%;
                 box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.30);
                 transform: translateY(0em);
-                position: relative;
             }
         }
 
@@ -115,6 +113,10 @@
             height: 2.5em;
             width: 80%;
             max-width: 980px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
             margin: 0 auto;
             margin-bottom: 1em;
             padding: .5em;
@@ -129,6 +131,7 @@
             will-change: transform;
             will-change: width;
             -webkit-appearance: none;
+            -webkit-backface-visibility: hidden;
         }
 
         .searchbar__input--init {
@@ -163,7 +166,7 @@
 
         .searchbar__input--active ~ .busstops {
             display: block;
-            animation: .35s .35s busstops-active both;
+            animation: .35s .5s busstops-active both;
             transform: translateY(4em);
         }
 
@@ -191,7 +194,7 @@
 </head>
 <body id="body">
 
-    <small>Build 2</small>
+    <small>Build 3</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code"
