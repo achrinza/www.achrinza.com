@@ -6,18 +6,17 @@
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, shrink-to-fit=no, width=device-width, viewport-fit=fill">
 
     <link rel="canonical" href=".">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Bus Arrival</title>
 
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
     <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-    <script async custom-element="amp-live-list" src="https://cdn.ampproject.org/v0/amp-live-list-0.1.js"></script>
     <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
-    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
@@ -100,38 +99,34 @@
             }
         }
 
-        @keyframes list-entry-inactive {
+        @keyframes bustimes-active {
             0% {
-                margin: 1em 0;
-                background-color: #fff;
-                box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.30);
-            }
-            100% {
-                margin: 0;
-                background-color: transparent;
-                box-shadow: none;
-            }
-        }
-
-        @keyframes list-entry-active {
-            0% {
-                margin: 0;
-                background-color: transparent;
-                box-shadow: none;
-            }
-            100% {
-                margin: 1em 0;
-                background-color: #fff;
-                box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.30);
-            }
-        }
-
-        @keyframes list-entry__collapsable-active {
-            0% {
+                height: auto;
                 opacity: 0;
+                transform: translateY(10em);
             }
             100% {
+                height: auto;
                 opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bustimes-inactive {
+            0% {
+                height: auto;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            99% {
+                height: auto;
+                opacity: 0;
+                transform: translateY(10em);
+            }
+            100% {
+                height: 0;
+                opacity: 0;
+                transform: translateY(10em);
             }
         }
 
@@ -188,17 +183,17 @@
             will-change: transform;
         }
 
-        .searchbar__input.searchbar__input--init ~ .busstops {
-            height: 0;
-            animation: none;
-        }
-
-        :not(.searchbar__input--active) ~ .busstops {
+        .busstops {
             animation: .35s busstops-inactive both;
             overflow: hidden;
         }
 
-        .searchbar__input--active ~ .busstops {
+        .busstops--init {
+            height: 0;
+            animation: none;
+        }
+
+        .busstops--active {
             animation: .35s .5s busstops-active both;
             transform: translateY(4em);
             overflow: visible;
@@ -210,60 +205,97 @@
             border-bottom: 1px solid #ddd;
             display: block;
             animation: .35s list-entry-inactive;
+            cursor: pointer;
         }
 
         .list-entry--easter:not([hidden]) {
             animation: .35s list-entry--easter-active both;
         }
-
-        .list-entry[expanded] {
-            animation: .35s list-entry-active both;
-        }
-
-        .list-entry > div {
-            background-color: transparent;
-            border: none;
-        }
         
-        .list-entry__collapsable {
-            animation: .35s list-entry__collapsable-active both;
+
+        .list-entry__description--inline {
+            padding-right: .25em;
+            display: inline-block;
+        }
+
+        .bustimes {
+            width: 100%;
+            height: 0;
+            max-width: 980px;
+            margin: 0 auto;
+            padding-top: 1em;
+            position: fixed;
+            top: 3.5em;
+            bottom: 0;
+            z-index: 1500;
+            overflow: hidden;
+            animation: .35s bustimes-inactive both;
+            box-sizing: border-box;
+            will-change: transform;
+            will-change: opacity;
+        }
+
+        .bustimes--init {
+            animation: none
+        }
+
+        .bustimes--active {
+            padding: .5em;
+            animation: .35s .5s bustimes-active both;
+            overflow: auto;
         }
     </style>
 
-    <template id="list" type="amp-mustache">
+    <template id="busstops-list" type="amp-mustache">
         {{#items}}
+        <div class="list-entry list-entry--code-{{code}}"
+            on="tap: AMP.setState({ busStopCode: {{code}} })">
+            <div>
+                <h3 class="list-entry__title">{{code}}</h3>
+                <p class="list-entry__description">{{address}}</p>
+            </div>
+        </div>
+        {{/items}}
+    </template>
+
+    <template id="bustimes-list" type="amp-mustache">
         <div class="list-entry"
             on="tap: AMP.setState({busStopCode: {{code}}}),
                     AMP.setState">
-            <h3 class="list-entry__title">{{code}}</h3>
-            <p class="list-entry__description">{{address}}</p>
+            <h3 class="list-entry__title">{{serviceNo}}</h3>
+            <p class="list-entry__description">{{arrival1}}</p>
         </div>
-        {{/items}}
     </template>
 </head>
 <body id="body">
 
-    <small>Build 3</small>
+    <small>Build 4</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
-            <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code"
+            <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
                 on="input-throttled: 
                         AMP.setState(
                             {
                                 searchbarActive: (event.value == '' ? false : true),
-                                easter:
-                                    ( event.value.toLowerCase().indexOf('do you know da wae') != -1 ? 1 :
-                                    ( event.value.split(' ').join('').indexOf('2+2') != -1 ? 2: 0 ))
+                                busTimesActive: false,
+                                busStopsActive: false,
+                                easter: 0
                             }
                         )
                         , AMP.navigateTo(url='#');
                     input-debounced: searchbar.submit,
-                        AMP.setState({ busStopCode: event.value })"
+                        AMP.setState(
+                            {
+                                busStopCode: event.value,
+                                busTimesActive: false,
+                                busStopsActive: (event.value == '' ? false : true)
+                            }
+                        )"
             [class]="'searchbar__input' + (searchbarActive ? ' searchbar__input--active' : '')">
 
             <div class="busstops" submit-success template="list"></div>
-            
-            <amp-accordion class="busstops" disable-session-states expand-single-section>
+            <div class="busstops busstops--init"
+                [class]="'busstops' + (busStopsActive ? ' busstops--active' : '')">
                 <section class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
                     [hidden]="easter != 1">
                     <div>
@@ -273,45 +305,77 @@
                     <div></div>
                 </section>
 
-                <section class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
+                <div class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
                     [hidden]="easter != 2">
                     <div>
                         <h3 class="list-entry__title">2 + 2 = 4 - 1 = 3</h3>
                         <p class="list-entry__description">Quick maffs.</p>
                     </div>
-                    <div>
-                        <a href="https://youtu.be/3M_5oYU-IsU?t=134">Obligatory link</a>
-                    </div>
-                </section>
+                </div>
 
-                <section class="list-entry list-entry--code-64069"
-                    on="tap: AMP.setState({ busStopCode: 64069 })">
+                <div class="list-entry list-entry--code-64069"
+                    on="tap: AMP.setState({ busStopCode: 64069, busStopsActive: false, busTimesActive: true })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
                     </div>
-                    <div class="list-entry__collapsable">
-                        <p>Test</p>
-                    </div>
-                </section>
+                </div>
 
-                <section class="list-entry list-entry--code-64061"
-                    on="tap: AMP.setState({ busStopCode: 64061 })">
+                <div class="list-entry list-entry--code-64061"
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
                     </div>
-                    <div class="list-entry__collapsable">
-                        <p>Test</p>
+                </div>
+
+                <div class="list-entry list-entry--code-64061"
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
+                    <div>
+                        <h3 class="list-entry__title">64069</h3>
+                        <p class="list-entry__description">Opp. Serangoon Sec</p>
                     </div>
-                </section>
-            </amp-accordion>
+                </div>
+
+                <div class="list-entry list-entry--code-64061"
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
+                    <div>
+                        <h3 class="list-entry__title">64069</h3>
+                        <p class="list-entry__description">Opp. Serangoon Sec</p>
+                    </div>
+                </div>
+            </div>
         </form>
 
         
 
-        <amp-live-list id="bustimes" src="//#" layout="fill" hidden>
-        </amp-live-list>
+        <div class="bustimes bustimes--init"
+            [class]="'bustimes' +
+            ( busTimesActive == true ? ' bustimes--active' : '')">
+            <amp-list id="bustimes-list" layout="fill" template="list">
+            </amp-list>
+            <h2 class="bustimes__code">64069</h2>
+            <p class="bustimes__address">Opp. Serangoon Secondary</p>
+
+            <div class="list-entry">
+                <h3 class="list-entry__title">62</h3>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+            </div>
+            <div class="list-entry">
+                <h3 class="list-entry__title">102</h3>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+            </div>
+            <div class="list-entry">
+                <h3 class="list-entry__title">136</h3>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
