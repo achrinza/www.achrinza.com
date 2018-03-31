@@ -67,7 +67,7 @@
                 opacity: 0;
             }
             100% {
-                transform: translateY(2em);
+                transform: translateY(2.5em);
                 opacity: 1;
             }
         }
@@ -75,7 +75,7 @@
         @keyframes busstops-inactive {
             0% {
                 height: auto;
-                transform: translateY(2em);
+                transform: translateY(2.5em);
                 opacity: 1;
             }
             99% {
@@ -196,7 +196,7 @@
         .busstops--active {
             animation: .35s .5s busstops-active both;
             opacity: 1;
-            transform: translateY(2em);
+            transform: translateY(2.5em);
             overflow: visible;
         }
 
@@ -215,7 +215,7 @@
         
 
         .list-entry__description--inline {
-            padding-right: .25em;
+            padding-right: .5em;
             display: inline-block;
         }
 
@@ -242,8 +242,15 @@
 
         .bustimes--active {
             animation: .35s .5s bustimes-active both;
-            overflow-y: scroll;
+            overflow-y: visible;
             -webkit-overflow-scrolling: touch
+        }
+
+        @media (max-width: 350px) {
+            .bustimes__slots {
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 
@@ -270,7 +277,7 @@
 </head>
 <body id="body">
 
-    <small>Build 8</small>
+    <small>Build 9</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
@@ -363,21 +370,27 @@
 
             <div class="list-entry">
                 <h3 class="list-entry__title">62</h3>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <div class="bustimes__slots">
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">loop</a> <a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                </div>
             </div>
             <div class="list-entry">
                 <h3 class="list-entry__title">102</h3>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <div class="bustimes__slots">
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">loop</a> <a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                </div>
             </div>
             <div class="list-entry">
                 <h3 class="list-entry__title">136</h3>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
-                <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                <div class="bustimes__slots">
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">loop</a> <a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                    <p class="list-entry__description list-entry__description--inline"><a class="material-icons">accessible</a> 5 mins</p>
+                </div>
             </div>
         </div>
     </div>
