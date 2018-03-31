@@ -67,7 +67,7 @@
                 opacity: 0;
             }
             100% {
-                transform: translateY(4em);
+                transform: translateY(2em);
                 opacity: 1;
             }
         }
@@ -75,7 +75,7 @@
         @keyframes busstops-inactive {
             0% {
                 height: auto;
-                transform: translateY(4em);
+                transform: translateY(2em);
                 opacity: 1;
             }
             99% {
@@ -179,13 +179,10 @@
         }
 
         .busstops {
-            will-change: height;
-            will-change: transform;
-        }
-
-        .busstops {
             animation: .35s busstops-inactive both;
             overflow: hidden;
+            will-change: height;
+            will-change: transform;
         }
 
         .busstops--init {
@@ -223,7 +220,7 @@
             height: 0;
             max-width: 980px;
             margin: 0 auto;
-            padding-top: 1em;
+            padding: .5em;
             position: fixed;
             top: 3.5em;
             bottom: 0;
@@ -240,7 +237,6 @@
         }
 
         .bustimes--active {
-            padding: .5em;
             animation: .35s .5s bustimes-active both;
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch
@@ -270,7 +266,7 @@
 </head>
 <body id="body">
 
-    <small>Build 6</small>
+    <small>Build 7</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
@@ -278,8 +274,8 @@
                         AMP.setState(
                             {
                                 searchbarActive: (event.value == '' ? false : true),
-                                busTimesActive: false,
-                                busStopsActive: false,
+                                busStopsActive: (busStopsActive == null ? null : 0),
+                                busTimesActive: (busTimesActive == null ? null : 0),
                                 easter: 0
                             }
                         )
@@ -288,15 +284,17 @@
                         AMP.setState(
                             {
                                 busStopCode: event.value,
-                                busTimesActive: false,
-                                busStopsActive: (event.value == '' ? false : true)
+                                busStopsActive: (event.value == '' ? (busStopsActive == null ? null : 0) : 1),
+                                busTimesActive: (busTimesActive == null ? null : 0),
                             }
                         )"
             [class]="'searchbar__input' + (searchbarActive ? ' searchbar__input--active' : '')">
 
             <div class="busstops" submit-success template="list"></div>
             <div class="busstops busstops--init"
-                [class]="'busstops' + (busStopsActive ? ' busstops--active' : '')">
+                [class]="'busstops' +
+                    ( busStopsActive == 1 ? ' busstops--active' :
+                    ( busStopsActive == null ? ' busstops--init' : '' ))">
                 <section class="list-entry list-entry--easter easter--do-you-know-da-wae" hidden
                     [hidden]="easter != 1">
                     <div>
@@ -315,7 +313,7 @@
                 </div>
 
                 <div class="list-entry list-entry--code-64069"
-                    on="tap: AMP.setState({ busStopCode: 64069, busStopsActive: false, busTimesActive: true })">
+                    on="tap: AMP.setState({ busStopCode: 64069, busStopsActive: 0, busTimesActive: 1 })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
@@ -323,7 +321,7 @@
                 </div>
 
                 <div class="list-entry list-entry--code-64061"
-                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: 0, busTimesActive: 1 })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
@@ -331,7 +329,7 @@
                 </div>
 
                 <div class="list-entry list-entry--code-64061"
-                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: 0, busTimesActive: 1 })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
@@ -339,7 +337,7 @@
                 </div>
 
                 <div class="list-entry list-entry--code-64061"
-                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: false, busTimesActive: true })">
+                    on="tap: AMP.setState({ busStopCode: 64061, busStopsActive: 0, busTimesActive: 1 })">
                     <div>
                         <h3 class="list-entry__title">64069</h3>
                         <p class="list-entry__description">Opp. Serangoon Sec</p>
@@ -352,11 +350,12 @@
 
         <div class="bustimes bustimes--init"
             [class]="'bustimes' +
-            ( busTimesActive == true ? ' bustimes--active' : '')">
+            ( busTimesActive == 1 ? ' bustimes--active' :
+            ( busTimesActive == null ? ' bustimes--init' : '' ))">
             <amp-list id="bustimes-list" layout="fill" template="list">
             </amp-list>
-            <h2 class="bustimes__code">64069</h2>
-            <p class="bustimes__address">Opp. Serangoon Secondary</p>
+            <h2 class="bustimes__code">00000</h2>
+            <p class="bustimes__address">Singapore Road</p>
 
             <div class="list-entry">
                 <h3 class="list-entry__title">62</h3>
