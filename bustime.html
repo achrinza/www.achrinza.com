@@ -179,7 +179,10 @@
         }
 
         .busstops {
+            height: 0;
             animation: .35s busstops-inactive both;
+            transform: translateY(10em);
+            opacity: 0;
             overflow: hidden;
             will-change: height;
             will-change: transform;
@@ -192,7 +195,8 @@
 
         .busstops--active {
             animation: .35s .5s busstops-active both;
-            transform: translateY(4em);
+            opacity: 1;
+            transform: translateY(2em);
             overflow: visible;
         }
 
@@ -266,7 +270,7 @@
 </head>
 <body id="body">
 
-    <small>Build 7</small>
+    <small>Build 8</small>
     <div class="wrapper">
         <form id="searchbar" class="searchbar" method="POST" action-xhr="https://www.ampbyexample.com/components/amp-form/submit-form-input-text-xhr">
             <input class="searchbar__input searchbar__input--init" name="code" type="text" placeholder="Enter bus stop code" value=""
