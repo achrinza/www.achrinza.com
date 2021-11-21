@@ -1,7 +1,24 @@
-# Our security policy
-In-scope: www.rifa.io
-Contact: security@rifa.io
-Contact: https://www.rifa.io/security/contact
-Encryption: https://www.rifa.io/security/pgp-key.txt
-Discolsure: Full
-Acknowledgement: https://www.rifa.io/security
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Contact: mailto:rifa@achrinza.com
+Expires: 2021-12-21T00:00:00.000Z
+Encryption: https://www.achrinza.com/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://www.achrinza.com/.well-known/security.txt
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEx280i2zXluz1e832Vlk0QegznX0FAmGaIVoACgkQVlk0Qegz
+nX07dRAAjiKp/cbYQ4LYPxW7wFytCtwrUl6pENRg43nNbmEOtWS+J7ypHWfnjsCE
+lz0VJa+MGEFAvpDPkeeH1p+gRB60vUvIdbPiCEdi33IqIEzkh4z524vxFPjx8Mb9
+XB6Z5ux2xK+rC4uxhKlkJg+S4JwuZkIPDUBDp3gXpb6mmNpSHaqcA85Ksq36E+ux
+fjGNhHl1YCQv7vafncQVAs7pyJapQZob32t5WZqX9UQEW4oieL+ImooTFQAstpII
+G1oXapp2Y6LJ3Ns9+Vf3CO+TC9zV64btb0GUMg7XjruECpPe9Ic5XAoMu1DOskZ3
+CKX5dDy/NyxO8dmP3ys38LeOcFJOFrcQoUfDZQbZjVYNOIXPwFt9B/eFl18ITFck
+hDd6MovvVBZg/7k0FvQnuLcetbA/PTEIXXGA/BFHrhb/cnBfha08D863wiqtMGMr
+HBhkGDBazWE29iynsrWaQZ0fynRasKeFV54SSh0BEtSFqNATRzvHFt1SbNuehP9g
+4FBtHg+i39S583E7sb7lD6Vsvk45chT3D2iy3y4Eer8kLPnJgghQJaZvwWPpFTgt
+DVwt6/ZANA6GWXTM0Yx3Q7OfJXlj4JN7vHj7JSW8LGkDWLJAU05RAid+JjZoemeu
+F/Lj/rsAG7dJjpjGCXwwgh+0zUwiHIY9BWA3ICIoDgOBPxNq2rk=
+=pCSe
+-----END PGP SIGNATURE-----
