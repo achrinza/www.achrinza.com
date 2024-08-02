@@ -1,0 +1,133 @@
+body {
+    font-family: Lora, serif;
+    line-height: 1.75;
+    padding: 3em 7% 0 7%;
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 20px;
+    background: #f4f4f5;
+}
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav {
+    font-family: Arial, sans-serif;
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: right;
+}
+
+.nav-item {
+    padding: .25em .5em;
+}
+
+.nav-item:last-child {
+    padding-right: 2em;
+}
+
+.name {
+    font-size: 1em;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.roles {
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.short-intro {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+}
+
+p {
+    margin: 1.5em 0;
+}
+
+section {
+    padding: 3em 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header__view-all {
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #555;
+    text-decoration: none;
+}
+
+.section-entries {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.section-entries > li {
+    border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 1em .5em;
+}
+
+.section-entries > li:first-child {
+    border-top: 0;
+}
+
+.section-entries > li:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.section-entries > li > a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.section-entry__subtext {
+    font-style: italic;
+    display: block;
+    color: #555;
+}
+
+.social-links {
+    link-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.social-links > li {
+    display: inline-block;
+    padding: 0 .5em;
+}
+
+.social-links > li:first-child {
+    padding-left: 0;
+}
+
+.social-links > li > a {
+    color: #333;
+    link-decoration: none;
+}

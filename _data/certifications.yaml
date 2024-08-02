@@ -1,0 +1,29 @@
+- name: Fortinet Certified Professional (FCP) Network Security
+  featured: true
+  startsOn: 2022-07-01
+  expiresOn: 2026-07-01
+
+- name: Oracle Cloud Infrastructure (OCI) Certified Foundations Associate
+  featured: true
+  startsOn: 2022-01-01
+  expiresOn: 2025-07-01
+
+- name: "Qualys Certified Specialist: Patch Management"
+  startsOn: 2022-08-01
+
+- name: "Qualys Certified Specialist: Vulnerability Detection Management & Response"
+  startsOn: 2022-04-01
+
+- name: "Qualys Certified Specialist: Policy Compliance"
+  startsOn: 2022-04-01
+
+- name: IBM z/OS Mainframe Practitioner Specialization
+  startsOn: 2022-02-01
+  
+- name: "Microsoft Certified: Azure Fundamentals"
+  featured: true
+  startsOn: 2022-01-01
+
+- name: "Microsoft Certified: Security, Compliance, and Identity Fundamentals"
+  featured: true
+  startsOn: 2021-07-01
