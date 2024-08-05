@@ -13,7 +13,7 @@ In fact, I code in Emacs purely through Flatpak. Not for the above reasons per-s
 
 An issue that plagues vitually every software development project nowadays is the abundant use of third-party dependencies. This issue is more prevalent in some ecosystems such as Node.js where many small packages tend to be preferred over larger, batteries-included packages. This means more code written by many different people.
 
-It's impossible to vet every single dependency and the intentions of their maintainers. Hence it becomes an exercise of trust that the maintainers protect their publishing credentials from compromise or to not go rogue. But every now and then, it happens.
+It's impossible to vet every single dependency and the intentions of their maintainers. Hence it becomes an exercise of trust that the maintainers protect their publishing credentials from compromise or to not go rogue. But every now and then, [it happens](https://www.bleepingcomputer.com/news/security/big-sabotage-famous-npm-package-deletes-files-to-protest-ukraine-war/).
 
 These malicious packages can be quickly authored and easily compromise a developers' machine. Hence, we need a broad, defensive approach towards mitigating the impact of such a compromise.
 
