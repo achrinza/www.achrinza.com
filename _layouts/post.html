@@ -1,7 +1,38 @@
 ---
 layout: default
 ---
+<style>
+  .post-back {
+      position: relative;
+      font-family: Arial, sans-serif;
+      color: #555;
+      text-decoration: none;
+  }
+
+  .post-url {
+      display: none;
+  }
+
+  @media print {
+      .post-back {
+	  display: none;
+      }
+
+      .post-url {
+	  display: block;
+	  color: #555;
+      }
+
+      pre {
+	  text-wrap: wrap;
+      }
+  }
+</style>
+
+<a href="/" class="post-back"><i class="fa-solid fa-chevron-left"></i> Back to homepage</a>
+
 <h1 style="font-family: Arial, sans-serif; font-size: 1.5em">{{ page.title }}</h1>
 {{ page.date | date:"%d %b %Y" }}
+<a class="post-url" href="https://www.achrinza.com{{ page.url }}">https://www.achrinza.com{{ page.url }}</a>
 {{ content }}
 <p style="font-weight: 600">- {{ page.author }}</p>
