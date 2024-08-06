@@ -5,7 +5,7 @@ date: 2024-08-05
 layout: post
 ---
 
-Flatpak is a great tool for installing user applications in a self contained environment without polluting the host machine. This mitigates a range of issues, notably depenency hell. There's even  packages for popular code editors such as VSCode/VSCodium and Emacs.
+[Flatpak](https://flatpak.org/) is a great tool for installing user applications in a self contained environment without polluting the host machine. This mitigates a range of issues, notably [depenency hell](https://en.wikipedia.org/wiki/Dependency_hell). There's even  packages for popular code editors such as VSCode/VSCodium and Emacs.
 
 In fact, I code in Emacs purely through Flatpak. Not for the above reasons per-se, but for something more valuable - _to contain the blast radius_.
 
@@ -15,15 +15,15 @@ An issue that plagues vitually every software development project nowadays is th
 
 It's impossible to vet every single dependency and the intentions of their maintainers. Hence it becomes an exercise of trust that the maintainers protect their publishing credentials from compromise or to not go rogue. But every now and then, [it happens](https://www.bleepingcomputer.com/news/security/big-sabotage-famous-npm-package-deletes-files-to-protest-ukraine-war/).
 
-These malicious packages can be quickly authored and easily compromise a developers' machine. Hence, we need a broad, defensive approach towards mitigating the impact of such a compromise.
+These malicious packages can be quickly authored and easily compromise a developer's machine and privileged credentials. Hence, we need a broad, defensive approach towards mitigating the impact of such a compromise.
 
 ## Flatpak sandboxing
 
 This is where Flatpak sandboxing comes in. It restricts an application's ability to access certain resources such as network, dbus, devices, and filesystem - the last one's what we'll talk about.
 
-In a perfect world, Flatpak apps would be configured to use Flatpak Portals - A mechanism to give granular, just-in-time access to a certain directory or file in the host file system with explicit user consent. However, anecdotally most apps don't support Portals. Furthermore, the subtle incompatibilities with certain tools and the inability to auto-revoke the access at the end of each session makes the experience feel especially clunky.
+In a perfect world, Flatpak apps would be configured to use [Flatpak Portals](https://docs.flatpak.org/en/latest/portal-api-reference.html) - A mechanism to give granular, just-in-time access to a certain directory or file in the host file system with explicit user consent. However, anecdotally most apps don't support Portals. Furthermore, the subtle incompatibilities with certain tools and the inability to auto-revoke the access at the end of each session makes the experience feel especially clunky.
 
-As a compromise, it is by convention, that most Flatpak apps are pre-configured with broad filesystem access. This provides out-of-the-box usability without the need for Portals. This does mean that the app environment has unecessarily broad access to the host filesystem.
+As a compromise, it is by convention, that most Flatpak developer-centric apps are pre-configured with broad filesystem access. This provides out-of-the-box usability without the need for Portals. This does mean that the app environment can interact with  most of the host filesystem.
 
 We can see the permissions with `flatpak info --show-permissions <app-id>`:
 
@@ -93,19 +93,19 @@ $ sudo chmod +x /usr/local/bin/emc
 
 Now we can give just-in-time, granular access just as easily as starting any other programme:
 
-```sh
+```shpp
 $ cd <project directory>
 $ emc
 ```
 
 ## Where are my override files?
 
-`flatpak override` is quite rudementary, and it's easy to make mistakes like typos in the app name. This can lead to stray or cluttered override files. Their location depends if the override was done with the `--user` or `--system` flag (no flag defaluts to `--system`).
+`flatpak override` is quite rudementary, and it's easy to make mistakes like typos in the app name. This can lead to stray or cluttered override files. Their location depends if the override was done with the `--user` or `--system` flag (no flag defaults to `--system`).
 
-- For apps installed system-wide: `/var/lib/flatpak/overrides/<app name>`
-- For apps installed per-user: `~/.local/share/flatpak/overrides/<app name>`
+- For apps installed system-wide: `/var/lib/flatpak/overrides/<app-id>`
+- For apps installed per-user: `~/.local/share/flatpak/overrides/<app-id>`
 
-If we inspect the file, we can see that it contains our overrides, and has the same syntax asthe output of `flatpak info --show-permissions`:
+If we inspect the file, we can see that it contains our overrides, and has the same syntax as the output of `flatpak info --show-permissions`:
 
 ```
 $ cat ~/.local/share/flatpak/overrides/org.gnu.emacs
@@ -120,7 +120,7 @@ We can modify this file by hand, or even delete it entirely if we want to get ba
 There are some limitations that I've personally stumbled into:
 
 1. With certain apps, the overrides is unable to handle multiple instances. I've previously observed this with VSCodium, but I'm not sure if this issues still persists. It does not affect Emacs.
-2. For apps that use Flatpak Portals, [it is not possible to disable Portals](https://github.com/flatpak/flatpak/issues/3977), so you'll need to revoke the portals with `flatpak document-unexport`.
+2. For apps that use Flatpak Portals, [it is not possible to disable Portals](https://github.com/flatpak/flatpak/issues/3977), so you'll need to manaully revoke the portals each session with `flatpak document-unexport`. Automating this is left as an exercise for the reader.
 
 ## In conclusion
 
