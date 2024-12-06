@@ -5,7 +5,7 @@ date: 2024-08-05
 layout: post
 ---
 
-[Flatpak](https://flatpak.org/) is a great tool for installing user applications in a self contained environment without polluting the host machine. This mitigates a range of issues, notably [depenency hell](https://en.wikipedia.org/wiki/Dependency_hell). There's even  packages for popular code editors such as VSCode/VSCodium and Emacs.
+[Flatpak](https://flatpak.org/) is a great tool for installing user applications in a self contained environment without polluting the host machine. This mitigates a range of issues, notably [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). There's even packages for popular code editors such as VSCode/VSCodium and Emacs.
 
 In fact, I code in Emacs purely through Flatpak. Not for the above reasons per-se, but for something more valuable - _to contain the blast radius_.
 
@@ -23,7 +23,7 @@ This is where Flatpak sandboxing comes in. It restricts an application's ability
 
 In a perfect world, Flatpak apps would be configured to use [Flatpak Portals](https://docs.flatpak.org/en/latest/portal-api-reference.html) - A mechanism to give granular, just-in-time access to a certain directory or file in the host file system with explicit user consent. However, anecdotally most apps don't support Portals. Furthermore, the subtle incompatibilities with certain tools and the inability to auto-revoke the access at the end of each session makes the experience feel especially clunky.
 
-As a compromise, it is by convention, that most Flatpak developer-centric apps are pre-configured with broad filesystem access. This provides out-of-the-box usability without the need for Portals. This does mean that the app environment can interact with  most of the host filesystem.
+As a compromise, it is by convention, that most Flatpak developer-centric apps are pre-configured with broad filesystem access. This provides out-of-the-box usability without the need for Portals. This does mean that the app environment can interact with most of the host filesystem.
 
 We can see the permissions with `flatpak info --show-permissions <app-id>`:
 
