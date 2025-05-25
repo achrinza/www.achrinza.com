@@ -1,3 +1,13 @@
+- name: Google Cloud Associate Cloud Engineer Certification
+  featured: true
+  startsOn: 2025-04-22
+  expiresOn: 2028-04-22
+
+- name: AWS Certified Cloud Practitioner
+  featured: true
+  startsOn: 2025-04-07
+  expiresOn: 2028-04-07
+
 - name: Fortinet Certified Professional (FCP) Network Security
   featured: true
   startsOn: 2022-07-01
