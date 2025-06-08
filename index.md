@@ -46,6 +46,8 @@ layout: default
 				{{ experience.startsOn | date:"%b %Y" }}
 				{% if experience.endsOn != nil %}
 				- {{ experience.endsOn | date:"%b %Y" }}
+                {% else %}
+                - Present
 				{% endif %}
 				</span>
 			<span class="section-entry__subtext">{{ experience.role }}</span>
@@ -73,10 +75,34 @@ layout: default
 		{% endfor %}
 	</ul>
 	</section>
+	<section>
+		<div class="section-header">
+			<h2>Education</h2>
+			<a class="section-header__view-all" href="/education">View all acadmic qualifications</a>
+		</div>
+		<ul class="section-entries">
+		{% for education in site.data.education limit:5 %}
+			<li>
+				{{ education.qualification }}
+				<span class="section-entry__subtext">
+					{{ education.matriculatesOn | date:"%b %Y" }}
+					{% if education.graduatesOn != nil %}
+					- {{ education.graduatesOn | date:"%b %Y" }}
+                    {% else %}
+                    - Present
+					{% endif %}
+                </span>
+				<span class="section-entry__subtext">{{ education.institution }}</span>
+			</li>
+		{% endfor %}
+		</ul>
+	</section>
 	
 	<section>
         <h2>Get in touch</h2>
-		<p>If you an to connect with me or just say  hi, reach out on social media or preferrably send email.</p>
+		<p>If you an to connect with me or just say  hi, reach out on social
+        media or preferrably send email.</p>
+        <p>rifa@[my surname].com</p>
         <ul class="social-links">
 			<li><a class="btn" href="https://linkedin.com/in/achrinza"><i class="fa-brands fa-linkedin"></i></a></li>
 			<li><a class="btn" href="https://github.com/achrinza"><i class="fa-brands fa-github"></i></a></li>

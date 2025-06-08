@@ -15,6 +15,8 @@ layout: default
 					{{ experience.startsOn | date:"%b %Y" }}
 					{% if experience.endsOn != nil %}
 					- {{ experience.endsOn | date:"%b %Y" }}
+                    {% else %}
+                    - Present
 					{% endif %}
 			   	</span>
 				<span class="section-entry__subtext">{{ experience.role }}</span>
