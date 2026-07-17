@@ -132,3 +132,19 @@ section {
     color: #333;
     link-decoration: none;
 }
+
+
+div.highlight {
+    background-color: #eee;
+    padding: .25rem 1.5rem;
+}
+/*
+@media (min-width: 650px) {
+    div.highlight {
+        padding: 0 7%;
+        margin: 0 -100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+*/
