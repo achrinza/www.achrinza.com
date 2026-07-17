@@ -3,7 +3,13 @@ layout: post
 title: "Running BOSH Lite on Windows 11 the easy way"
 categories: cloudfoundry-bosh
 author: Rifa Achrinza
+excerpt: >-
+  Locally deploy BOSH on Windows with WSL 2 mirrored mode and
+  with minimal tinkering.
 ---
+
+
+<!--more-->
 
 Cloud Foundry [BOSH](https://bosh.io/docs/) is a powerful tool that provides a
 standard for packaging software, deploying it, and especially for managing
@@ -79,14 +85,14 @@ adapter pair.
 ## The Problem
 
 Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
- command, do no support Windows. Therefore, it's recommended to run the
+ command, do not support Windows. Therefore, it's recommended to run the
  command under WSL 2. However:
 
 1. The VirtualBox CPI relies on the `VBoxManage` CLI and passes untransformed
     Linux paths for stemcell uploads
 2. VirtualBox on WSL 2 is not supported
 3. There is [no route](https://github.com/microsoft/WSL/issues/14381) between
-   VirtualBox's host-only networking and WSL 2 mirrored mode.
+   VirtualBox's host-only networking and WSL 2 in mirrored mode.
 
 
 ## Prerequisites
@@ -192,6 +198,7 @@ Because the networking stack differs from what `bosh-deployment` covers,
 we'll need to create a new Ops File:
 
 ```yaml
+# ./virtualbox-wsl2.yml
 - name: /networks/name=default/subnets/0/cloud_properties?
   type: replace
   value:
