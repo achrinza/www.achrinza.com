@@ -8,6 +8,12 @@ body {
     background: #f4f4f5;
 }
 
+@media (max-width: 950px) {
+    body {
+        font-size: 15px;
+    }
+}
+
 .nav-container {
     position: fixed;
     top: 0;
@@ -151,7 +157,6 @@ div.highlight {
 
 pre.highlight {
     margin: 0 auto;
-    font-size: 1.2rem;
 }
 
 /*
