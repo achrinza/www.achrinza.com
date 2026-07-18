@@ -18,8 +18,8 @@ metrics!).
 
 Getting started with BOSH can seem quite daunting as production setups assume
 you're using it to manage a bunch of virtual machines on a platform like AWS
-or vSphere. But for development, there's *BOSH Lite*, a lightweight setup
-crammed into a single VM.
+or vSphere. But don't fret! For local development, there's *BOSH Lite*, a
+lightweight setup crammed into a single VM.
 
 ```text
                                                                    
@@ -58,11 +58,11 @@ crammed into a single VM.
 
 ```
 
-Unlike a typical setup, BOSH Lite swaps the BOSH Director's CPI Provider for
-Warden (used to interact with Cloud Foundry's own container runtime,
+Compared to a typical setup, BOSH Lite swaps the BOSH Director's CPI Provider
+for Warden (used to interact with Cloud Foundry's own container runtime,
 ~~Warden~~ ahem,
 [Guardian](https://github.com/cloudfoundry/garden-runc-release)) while the
-ephemeral Bootstrap BOSH (via `bosh create-env`) retains the original
+ephemeral Bootstrap BOSH (that's `bosh create-env`) retains the original
 platform's CPI Proivder. This creates a split-CPI Provider setup which can
 seem confusing at first. But as the diagram above shows, it's actually not too
 different!
@@ -269,10 +269,10 @@ bosh -e vbox -d zookeeper run-errand smoke-tests
 ## Final Thoughts
 
 BOSH is an underrated, mature tool for managing VMs, but getting started on
-Windows with it is more confusing than it needs to be. For me, this meant more
-time spent trying to set up BOSH before being able to actually learn it. The
-setup described above is what I use today for local BOSH development on
-Windows - A quick way to get started with minimal fuss. That's why I wrote
-this article with a BOSH Lite explainer and a networking guide; It's what I
-wish I knew when first starting with BOSH, and I hope it comes in handy for
-those who want to get started quickly.
+Windows is more confusing than it needs to be. For me, this meant more time
+spent trying to set up BOSH before being able to actually learn it. The setup
+described above is what I use today for local BOSH development on Windows - A
+quick way to get started with minimal fuss. That's why I wrote this article
+with a BOSH Lite explainer and a networking guide; It's what I wish I knew
+when first starting with BOSH, and I hope it comes in handy for those who want
+to get started quickly.
