@@ -4,7 +4,7 @@ body {
     padding: 3em 7% 0 7%;
     max-width: 650px;
     margin: 0 auto;
-    font-size: 18px;
+    font-size: 1.15em;
     background: #f4f4f5;
 }
 
@@ -139,10 +139,26 @@ section {
     link-decoration: none;
 }
 
+/*
+  === Post layout ===
+*/
+
+img {
+    max-width: 100%;
+}
+
+blockquote {
+    border-left: 3px #333 solid;
+    padding-left: 1em;
+    margin-left: 0;
+}
+
+code.highlighter-rouge {
+    background-color: #e7e7e7;
+}
 
 div.highlight {
     background-color: #eee;
-    font-size: .9em;
     padding: .25rem 1.5rem;
     margin-bottom: 1.5em;
     margin-left: calc(-50vw + 50%);
@@ -157,12 +173,6 @@ pre.highlight {
 }
 
 
-
-@media (max-width: 950px) {
-    body {
-        font-size: 15px;
-    }
-}
 
 /*
 @media (min-width: 650px) {
