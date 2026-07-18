@@ -8,12 +8,6 @@ body {
     background: #f4f4f5;
 }
 
-@media (max-width: 950px) {
-    body {
-        font-size: 15px;
-    }
-}
-
 .nav-container {
     position: fixed;
     top: 0;
@@ -148,7 +142,7 @@ section {
 
 div.highlight {
     background-color: #eee;
-    font-size: 1rem;
+    font-size: .9em;
     padding: .25rem 1.5rem;
     margin-left: calc(-50vw + 50%);
     width: 100vw;
@@ -159,6 +153,14 @@ div.highlight {
 
 pre.highlight {
     margin: 0 auto;
+}
+
+
+
+@media (max-width: 950px) {
+    body {
+        font-size: 15px;
+    }
 }
 
 /*

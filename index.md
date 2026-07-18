@@ -39,7 +39,7 @@ layout: default
 			<a class="section-header__view-all" href="/experience">View all experience</a>
 		</div>
 	<ul class="section-entries">
-		{% for experience in site.data.experiences limit:5 %}
+		{% for experience in site.data.experiences limit:3 %}
 		<li>
 		    {{ experience.employerName }}
 			<span class="section-entry__subtext">
