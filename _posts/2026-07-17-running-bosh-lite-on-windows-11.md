@@ -59,7 +59,7 @@ crammed into a single VM.
 ```
 
 Unlike a typical setup, BOSH Lite swaps the BOSH Director's CPI Provider for
-Warden (used to interact with Cloud Foundry's own container runtime engine,
+Warden (used to interact with Cloud Foundry's own container runtime,
 ~~Warden~~ ahem,
 [Guardian](https://github.com/cloudfoundry/garden-runc-release)) while the
 ephemeral Bootstrap BOSH (via `bosh create-env`) retains the original
@@ -95,7 +95,7 @@ Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
     Linux paths for stemcell uploads
 2. VirtualBox on WSL 2 is not supported
 3. There is [no route](https://github.com/microsoft/WSL/issues/14381) between
-   VirtualBox's host-only networking and WSL 2 in mirrored mode.
+   VirtualBox's host-only network and WSL 2 in mirrored mode.
 
 
 ## Prerequisites
@@ -104,6 +104,7 @@ Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
 2. Install the [`bosh` CLI](./cli-v2-install) on the WSL 2 environment
 3. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) on the
    Windows host
+4. Clone [bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)
 
 
 ## Setup
@@ -263,3 +264,15 @@ bosh upload-stemcell --sha1 cda735071b3d91349b90ee3309ef8d16cfe2dc74 \
 bosh -e vbox -d zookeeper deploy <(curl -L https://github.com/achrinzafork/zookeeper-release/raw/b9a3df6abefb2a853738c99c200eaa93892f8f55/manifests/zookeeper.yml)
 bosh -e vbox -d zookeeper run-errand smoke-tests
 ```
+
+
+## Final Thoughts
+
+BOSH is an underrated, mature tool for managing VMs, but getting started on
+Windows with it is more confusing than it needs to be. For me, this meant more
+time spent trying to set up BOSH before being able to actually learn it. The
+setup described above is what I use today for local BOSH development on
+Windows - A quick way to get started with minimal fuss. That's why I wrote
+this article with a BOSH Lite explainer and a networking guide; It's what I
+wish I knew when first starting with BOSH, and I hope it comes in handy for
+those who want to get started quickly.
