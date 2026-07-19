@@ -4,14 +4,7 @@ body {
     padding: 3em 7% 0 7%;
     max-width: 650px;
     margin: 0 auto;
-    font-size: 1.15em;
     background: #f4f4f5;
-}
-
-@media (max-width: 650px) {
-    body {
-        font-size: 1em;
-    }
 }
 
 .nav-container {
@@ -168,11 +161,13 @@ div.highlight {
     padding: .25rem 1.5rem;
     margin-bottom: 1.5em;
     margin-left: calc(-50vw + 50%);
-    width: 100vw;
+    width: fit-content;
+    min-width: 100vw;
+    max-width: 100vw;
     display: flex;
-    min-width: fit-content;
     box-sizing: border-box;
     font-size: 1em;
+    overflow-x: scroll;
 }
 
 pre.highlight {
