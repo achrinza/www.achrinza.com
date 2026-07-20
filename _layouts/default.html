@@ -3,27 +3,34 @@
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="{{page.excerpt | strip_html}}">
-    <meta name="viewport" content="initial-scale=1, shrink-to-fit=no, viewport-fit=cover, width=device-width">
+    <meta name="viewport" content="initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover, width=device-width">
 
-    <title>
-      {% if page.title == nil %}
-      InfoSec & FOSS Developer
-      {% else %}
-      {{ page.title }}
-      {% endif %}
-      - Rifa Achrinza
-      {% if page.layout == "post" %}
-      Blog
-      {% endif %}
-    </title>
+    {% assign title = "" -%}
+    {% if page.title == nil -%}
+      {% assign title = title | append: "InfoSec & FOSS Developer" -%}
+    {% else -%}
+      {% assign title = title | append: page.title -%}
+    {% endif -%}
+    {% assign title = title | append: "- Rifa Achrinza" -%}
+    {% if page.layout == "post" -%}
+      {% assign title = title | append: "Blog" -%}
+    {% endif -%}
+    
+    <title>{{ title }}</title>
 
+    {% if site.env.UMAMI_WEBSITE_ID != nil -%}
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ site.env.UMAMI_WEBSITE_ID }}"></script>
+    {% endif -%}
+
+    {% if site.env.site.env.GTM_ID -%}
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P88H5KTF');</script>
+    })(window,document,'script','dataLayer','{{ site.env.GTM_ID }}');</script>
     <!-- End Google Tag Manager -->
+    {% endif -%}
 
     <link rel="stylesheet" href="{{ '/assets/css/commons.css' | relative_url }}">
 
@@ -35,11 +42,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css" integrity="sha512-EJp8vMVhYl7tBFE2rgNGb//drnr1+6XKMvTyamMS34YwOEFohhWkGq13tPWnK0FbjSS6D8YoA3n3bZmb3KiUYA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P88H5KTF"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  
+    {% if site.env.site.env.GTM_ID -%}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.env.GTM_ID }}"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% endif -%}
+
 <!--    <nav class="nav-container">
       <ul class="nav">
 	<li class="nav-item">Home</li>

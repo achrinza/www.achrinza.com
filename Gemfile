@@ -12,6 +12,8 @@ gem "bigdecimal", "~> 4.1", ">= 4.1.2"
 
 # Jekyll plugins
 group :jekyll_plugins do
+  gem "jekyll-environment-variables", "~> 1.0", :group => :jekyll_plugins
   gem "jekyll-feed", "~> 0.17"
   gem "jekyll-sitemap", "~> 1.4"
 end
+

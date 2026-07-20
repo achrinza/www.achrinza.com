@@ -5,6 +5,10 @@ date: 2024-08-05
 layout: post
 ---
 
+- Table of Contents
+{:toc}
+
+
 [Flatpak](https://flatpak.org/) is a great tool for installing user applications in a self contained environment without polluting the host machine. This mitigates a range of issues, notably [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). There's even packages for popular code editors such as VSCode/VSCodium and Emacs.
 
 In fact, I code in Emacs purely through Flatpak. Not for the above reasons per-se, but for something more valuable - _to contain the blast radius_.

@@ -61,18 +61,25 @@ layout: default
 			<a class="section-header__view-all" href="/certifications">View all certifications</a>
 		</div>
 	<ul class="section-entries">
-		{% assign featured_certifications = site.data.certifications | where:"featured", true %}
-		{% for certification in featured_certifications %}
+		{% assign featured_certifications = site.data.certifications
+           | where: "featured", true
+           | sort: "expiresOn"
+           | sort: "startsOn"
+           | reverse -%}
+		{% for certification in featured_certifications -%}
 		<li>
 			{{ certification.name }}
-			<span class="section-entry__subtext">
-				{{ certification.startsOn | date:"%b %Y" }}
-				{% if certification.expiresOn != nil %}
-				  - {{ certification.expiresOn | date:"%b %Y" }}
-			    {% endif %}
-	        </span>
+            {% assign certificationDateRange = certification.startsOn | date:"%b %Y" -%}
+            {% if certification.expiresOn != nil -%}
+              {% assign certificationExpiresOnFormatted = certification.expiresOn | date:"%b %Y" -%}
+              {% assign certificationDateRange =
+                 certificationDateRange
+                 | append: " - "
+                 | append: certificationExpiresOnFormatted -%}
+            {% endif -%}
+			<span class="section-entry__subtext">{{ certificationDateRange }}</span>
 		</li>
-		{% endfor %}
+		{% endfor -%}
 	</ul>
 	</section>
 	<section>

@@ -4,6 +4,11 @@ title: "A site refresh"
 categories: website
 author: Rifa Achrinza
 ---
+
+- Table of Contents
+{:toc}
+
+
 It's been a while, and that means it's time for a website refresh!
 
 The previous iteration of my personal website served its needs well - It was simple, a single page, and contained my a breif introducer, and how to reach out to me.

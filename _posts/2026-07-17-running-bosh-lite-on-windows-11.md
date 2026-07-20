@@ -8,8 +8,11 @@ excerpt: >-
   with minimal tinkering.
 ---
 
+- Table of Contents
+{:toc}
 
-<!--more-->
+
+## A Primer on BOSH Lite
 
 Cloud Foundry [BOSH](https://bosh.io/docs/) is a powerful tool that provides a
 standard for packaging software, deploying it, and especially for managing
@@ -85,11 +88,12 @@ and limits changes to within WSL 2 and one Hyper-V vSwitch and vEthernet
 adapter pair.
 
 
-## The Problem
+## The problem
 
 Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
- command, do not support Windows. Therefore, it's recommended to run the
- command under WSL 2. However:
+ command, [do not support
+ Windows](https://github.com/cloudfoundry/bosh-cli/issues/278). Therefore,
+ it's recommended to run the command under WSL 2. However:
 
 1. The VirtualBox CPI relies on the `VBoxManage` CLI and passes untransformed
     Linux paths for stemcell uploads
@@ -118,7 +122,7 @@ Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
 > issue.
 
 
-### Enabling the Hyper-V Windows Feature
+### Enabling the Hyper-V Windows feature
 
 This is needed to leverage Hyper-V's vSwitch to expose a network adapter with
 a routable IP address. Our VirtualBox VMs will attach to this network adapter
@@ -131,7 +135,7 @@ instead of VirtualBox's host-only network.
 4. Restart the computer when instructed.
 
 
-### Create a Internal Hyper-V vSwitch Network
+### Create a internal Hyper-V vSwitch network
 
 1. Open "Hyper-V Manager" from the Start Menu
 2. Go to "Action" > "Virtual Switch Manager"
@@ -147,7 +151,7 @@ instead of VirtualBox's host-only network.
     ![](https://static.achrinza.com/media/articles/running-bosh-lite-on-windows-11/hyper-v-internal-network-config.png)
 
 
-### Making the Network Adapter Routable
+### Making the network adapter routable
 
 > **Tip**
 >
@@ -250,7 +254,7 @@ export BOSH_CLIENT_SECRET="$(bosh int ./creds.yml --path /admin_password)"
 bosh alias-env vbox -e 10.150.250.6 --ca-cert <(bosh int ./creds.yml --path /director_ssl/ca)
 ```
 
-## Next Steps
+## Next steps
 
 Now we have a functioning BOSH environment! To start testing out BOSH, we can
 try the classic ZooKeeper deployment (with [some
@@ -266,7 +270,7 @@ bosh -e vbox -d zookeeper run-errand smoke-tests
 ```
 
 
-## Final Thoughts
+## Final thoughts
 
 BOSH is an underrated, mature tool for managing VMs, but getting started on
 Windows is more confusing than it needs to be. For me, this meant more time

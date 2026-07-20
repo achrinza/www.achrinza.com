@@ -5,6 +5,13 @@ body {
     max-width: 650px;
     margin: 0 auto;
     background: #f4f4f5;
+
+    /* Prevent iOS front resizing <pre> to a humungous font size */
+    -webkit-text-size-adjust: none;
+}
+
+a {
+    color: #003b97;
 }
 
 .nav-container {
@@ -174,7 +181,48 @@ pre.highlight {
     margin: 0 auto;
 }
 
+.markdown-toc {
+    magin: 1.5em 0;
+}
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #181a1b;
+        color: #e8e6e3;
+    }
+
+    div.highlight {
+        background-color: #1b1d1e;
+    }
+
+    a {
+        color: #71baff;
+    }
+
+    .post-back {
+        color: #b2aca2 !important;
+    }
+
+    .section-header__view-all {
+        color: #b2aca2;
+    }
+
+    .section-entry__subtext {
+        color: #b2aca2;
+    }
+
+    .section-entries > li, .section-entries > li:last-child {
+        border-color: #3a3e41;
+    }
+
+    .social-links > li > a {
+        color: #c8c3bc;
+    }
+
+    code.highlighter-rouge {
+        background-color: #26292a;
+    }
+}
 
 /*
 @media (min-width: 650px) {

@@ -8,13 +8,50 @@
   startsOn: 2025-04-07
   expiresOn: 2028-04-07
 
-- name: Fortinet Certified Professional (FCP) Network Security
-  featured: true
-  startsOn: 2022-07-01
-  expiresOn: 2026-07-01
 
-- name: Oracle Cloud Infrastructure (OCI) Certified Foundations Associate
+# === FORTINET (2026 Series) ===
+- name: Fortinet NSE 7 Certified in Secure Networking
   featured: true
+  startsOn: 2026-04-21
+  expiresOn: 2028-04-21
+
+- name: Fortinet NSE 6 Certified in Secure Networking
+  startsOn: 2024-07-17
+  expiresOn: 2028-04-21
+
+- name: Fortinet NSE 4 Certified in FortiOS
+  startsOn: 2024-07-17
+  expiresOn: 2028-04-21
+
+- name: Fortinet NSE 3 Certified in Cybersecurity
+  startsOn: 2024-06-26
+  expiresOn: 2028-04-21
+
+- name: Fortinet NSE 2 Certified in Cybersecurity
+  startsOn: 2024-06-25
+  expiresOn: 2028-04-21
+
+- name: Fortinet NSE 1 Certified in Cybersecurity
+  startsOn: 2024-06-25
+  expiresOn: 2028-04-21
+
+# === FORTINET (202? Series) ===
+  
+- name: Fortinet Certified Professional (FCP) Network Security
+  startsOn: 2024-07-01
+  expiresOn: 2028-04-21
+  
+- name: Fortinet Certified Fundamentals (FCF) Cybersecurity
+  startsOn: 2024-06-25
+  expiresOn: 2028-04-21
+  
+- name: Fortinet Certified Associate (FCA) Cybersecurity
+  startsOn: 2024-06-26
+  expiresOn: 2028-04-21
+
+
+  
+- name: Oracle Cloud Infrastructure (OCI) Certified Foundations Associate
   startsOn: 2022-01-01
   expiresOn: 2025-07-01
 
@@ -31,8 +68,8 @@
   startsOn: 2022-02-01
   
 - name: "Microsoft Certified: Azure Fundamentals"
-  featured: true
   startsOn: 2022-01-01
 
 - name: "Microsoft Certified: Security, Compliance, and Identity Fundamentals"
+  featured: true
   startsOn: 2021-07-01
