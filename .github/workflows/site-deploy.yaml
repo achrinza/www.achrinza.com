@@ -51,6 +51,9 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d  # v6.0.0
 
       - name: Build Pages
+        env:
+          GTM_ID: ${{ vars.GTM_ID }}
+          UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
         run: |
           bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
 
