@@ -61,12 +61,13 @@ lightweight setup crammed into a single VM.
 
 ```
 
-Compared to a typical setup, BOSH Lite swaps the BOSH Director's CPI Provider
-for Warden (used to interact with Cloud Foundry's own container runtime,
-~~Warden~~ ahem,
+Compared to a typical setup, BOSH Lite swaps the BOSH Director's Cloud
+Provider Interface's (CPI) Provider - the abstraction code that enables BOSH
+to interact with platforms - for Warden (used to interact with Cloud Foundry's
+own container runtime, ~~Warden~~ ahem,
 [Guardian](https://github.com/cloudfoundry/garden-runc-release)) while the
 ephemeral Bootstrap BOSH (that's `bosh create-env`) retains the original
-platform's CPI Proivder. This creates a split-CPI Provider setup which can
+platform's CPI Provider. This creates a split-CPI Provider setup which can
 seem confusing at first. But as the diagram above shows, it's actually not too
 different!
 
@@ -75,7 +76,7 @@ than not it's used on either VirtualBox or Docker. Although Docker is the
 [now-preferred](https://github.com/cloudfoundry/docs-bosh/issues/907#issuecomment-4867328298)
 platform for local BOSH development, the VirtualBox support is more
 [feature-complete](https://github.com/cloudfoundry/bosh-docker-cpi-release/tree/65582382f6c9ae25c3ff6868bd2ab0279924d234#todo),
-better-documented and mature.
+better-documented, and mature.
 
 This guide will provide steps for spinning up a Windows 11 VirtualBox BOSH
 environment with the BOSH CLI via Windows Subsystem for Linux 2 (WSL 2).
