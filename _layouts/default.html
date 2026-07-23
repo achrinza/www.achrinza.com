@@ -11,12 +11,19 @@
     {% else -%}
       {% assign title = title | append: page.title -%}
     {% endif -%}
-    {% assign title = title | append: "- Rifa Achrinza" -%}
+    {% assign title = title | append: " - Rifa" -%}
     {% if page.layout == "post" -%}
-      {% assign title = title | append: "Blog" -%}
+      {% assign title = title | append: "'s Blog" -%}
+    {% else -%}
+      {% assign title = title | append: " Achrinza" -%}
     {% endif -%}
     
     <title>{{ title }}</title>
+
+    <link rel="canonical" href="{{ page.url | prepend: absolute_url }}">
+    <link rel="alternate" type="application/rss+xml" title="Rifa Achrinza's Blog" href="{{ "/blog/rss.xml" | absolute_url}}">
+    <link rel="alternate" type="application/atom+xml" title="Rifa Achrinza's Blog" href="{{ "/blog/atom.xml" | absolute_url}}">
+    <link rel="alternate" type="application/feed+json" title="Rifa Achrinza's Blog" href="{{ "/blog/feed.json" | absolute_url}}">
 
     {% if site.env.UMAMI_WEBSITE_ID != nil -%}
     <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ site.env.UMAMI_WEBSITE_ID }}"></script>

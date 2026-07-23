@@ -21,6 +21,12 @@ layout: default
 			<h2>Blog posts</h2>
 			<a class="section-header__view-all" href="/blog">View all posts</a>
 		</div>
+        <div class="section-subheader">
+          <a class="section-subheader__item" href="{{"/blog/rss.xml" | absolute_url }}">RSS</a>
+          <a class="section-subheader__item" href="{{"/blog/atom.xml" | absolute_url }}">Atom</a>
+          <a class="section-subheader__item" href="{{"/blog/feed.json" | absolute_url }}">JSON Feed</a>
+        </div>
+        
 		<ul class="section-entries">
 			{% for post in site.posts limit:5 %}
 			<li>
