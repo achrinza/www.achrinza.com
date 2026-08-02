@@ -106,7 +106,8 @@ Most BOSH CPIs (including VirtualBox), and by extension the `bosh create-env`
 ## Prerequisites
 
 1. Install [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install)
-2. Install the [`bosh` CLI](./cli-v2-install) on the WSL 2 environment
+2. Install the [`bosh` CLI](https://bosh.io/docs/cli-v2-install/) on the WSL 2
+   environment
 3. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) on the
    Windows host
 4. Clone [bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)

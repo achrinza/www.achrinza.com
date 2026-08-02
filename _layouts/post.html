@@ -31,8 +31,32 @@ layout: default
 
 <a href="/" class="post-back"><i class="fa-solid fa-chevron-left"></i> Back to homepage</a>
 
-<h1 style="font-family: Arial, sans-serif; font-size: 1.5em">{{ page.title }}</h1>
-{{ page.date | date:"%d %b %Y" }}
-<a class="post-url" href="https://www.achrinza.com{{ page.url }}">https://www.achrinza.com{{ page.url }}</a>
-{{ content }}
-<p style="font-weight: 600">- {{ page.author }}</p>
+
+<article class="h-entry hentry">
+  <h1 class="p-name entry-title"
+      style="font-family: Arial, sans-serif; font-size: 1.5em">{{ page.title }}</h1>
+  <div class="blog-subscription-bar section-subheader" style="margin-bottom: 1em;">
+    <a class="section-subheader__item"
+       data-umami-event="feed-subscribe-rss"
+       href="{{"/blog/rss.xml" | absolute_url }}">RSS</a>
+    <a class="section-subheader__item"
+       data-umami-event="feed-subscribe-atom"
+       href="{{"/blog/atom.xml" | absolute_url }}">Atom</a>
+    <a class="section-subheader__item"
+       data-umami-event="feed-subscribe-jsonfeed"
+       href="{{"/blog/feed.json" | absolute_url }}">JSON Feed</a>
+  </div>
+  <time class="dt-published published"
+        datetime="page.date">{{ page.date | date:"%d %b %Y" }}</time>
+  <a class="u-url u-uid post-url"
+     rel="bookmark"
+     href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a>
+
+  <main class="e-content">
+    {{ content }}
+  </main>
+  <p style="font-weight: 600">- <a class="p-author author h-card vcard"
+                                   rel="author"
+                                   style="color: inherit; text-decoration: none;"
+                                   href="https://www.achrinza.com/">{{ page.author }}</a></p>
+</article>

@@ -122,7 +122,7 @@ section {
     border-bottom: 1px solid #ddd;
 }
 
-.section-entries > li > a {
+.section-entries > li > article > a {
     color: inherit;
     text-decoration: none;
     display: block;
@@ -191,8 +191,8 @@ pre.highlight {
     margin: 0 auto;
 }
 
-.markdown-toc {
-    magin: 1.5em 0;
+#markdown-toc {
+    margin: 2em 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -244,3 +244,9 @@ pre.highlight {
     }
 }
 */
+
+@media print {
+    .blog-subscription-bar {
+        display: none;
+    }
+}

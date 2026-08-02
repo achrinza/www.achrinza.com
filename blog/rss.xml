@@ -8,7 +8,7 @@
      xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 >
 	<channel>
-		<title>{{ site.name | xml_escape }}</title>
+		<title>{{ "Rifa's Blog" | xml_escape }}</title>
 		<description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>		
 		<sy:updatePeriod>{{ site.feed_update_period | default: "daily" | xml_escape }}</sy:updatePeriod>
 		<sy:updateFrequency>{{ site.feed_update_frequency | default: 1 | xml_escape }}</sy:updateFrequency>
@@ -29,7 +29,12 @@
 				{% endif %}
 				<content:encoded>{{ post.content | xml_escape }}</content:encoded>
 				<pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-				<link>{{ site.url }}{{ post.url }}</link>
+				<link>{{
+                                  "?utm_source=rss&utm_medium=feed"
+                                  | prepend: post.url
+                                  | prepend: site.url
+                                  | xml_escape
+                                }}</link>
 				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
 			</item>
 		{% endfor %}

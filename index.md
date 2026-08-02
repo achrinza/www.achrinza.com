@@ -19,21 +19,33 @@ layout: default
 	<section>
 		<div class="section-header">
 			<h2>Blog posts</h2>
-			<a class="section-header__view-all" href="/blog">View all posts</a>
+			<a class="section-header__view-all" href="{{"/blog" | absolute_url}}">View all posts</a>
 		</div>
         <div class="section-subheader">
-          <a class="section-subheader__item" href="{{"/blog/rss.xml" | absolute_url }}">RSS</a>
-          <a class="section-subheader__item" href="{{"/blog/atom.xml" | absolute_url }}">Atom</a>
-          <a class="section-subheader__item" href="{{"/blog/feed.json" | absolute_url }}">JSON Feed</a>
+          <a class="section-subheader__item"
+             data-umami-event="feed-subscribe"
+             data-umami-event-feed-type="rss"
+             href="{{"/blog/rss.xml" | absolute_url }}">RSS</a>
+          <a class="section-subheader__item"
+             data-umami-event="feed-subscribe"
+             data-umami-event-feed-type="atom"
+             href="{{"/blog/atom.xml" | absolute_url }}">Atom</a>
+          <a class="section-subheader__item"
+             data-umami-event="feed-subscribe"
+             data-umami-event-feed-type="jsonfeed"
+             href="{{"/blog/feed.json" | absolute_url }}">JSON Feed</a>
         </div>
         
 		<ul class="section-entries">
 			{% for post in site.posts limit:5 %}
 			<li>
-				<a href="{{ post.url }}">
-					{{ post.title }}
-					<span class="section-entry__subtext">{{ post.date | date:"%b %Y" }}</span>
-				</a>
+              <article>
+                <a href="{{ post.url | absolute_url }}">
+                  <span class="p-name entry-title">{{ post.title }}</span>
+                  <time class="dt-published published section-entry__subtext"
+                        datetime="{{ post.date }}">{{ post.date | date:"%b %Y" }}</time>
+                  </a>
+              </article>
 			</li>
 			{% endfor %}
 		</ul>
@@ -42,7 +54,7 @@ layout: default
 	<section>
 		<div class="section-header">
 			<h2>Experience</h2>
-			<a class="section-header__view-all" href="/experience">View all experience</a>
+			<a class="section-header__view-all" href="{{"/experience" | absolute_url}}">View all experience</a>
 		</div>
 	<ul class="section-entries">
 		{% for experience in site.data.experiences limit:3 %}
@@ -64,7 +76,7 @@ layout: default
 	<section>
 		<div class="section-header">
 			<h2>Certifications</h2>
-			<a class="section-header__view-all" href="/certifications">View all certifications</a>
+			<a class="section-header__view-all" href="{{"/certifications" | absolute_url}}">View all certifications</a>
 		</div>
 	<ul class="section-entries">
 		{% assign featured_certifications = site.data.certifications
@@ -91,7 +103,7 @@ layout: default
 	<section>
 		<div class="section-header">
 			<h2>Education</h2>
-			<a class="section-header__view-all" href="/education">View all acadmic qualifications</a>
+			<a class="section-header__view-all" href="{{"/education"| absolute_url}}">View all acadmic qualifications</a>
 		</div>
 		<ul class="section-entries">
 		{% for education in site.data.education limit:5 %}

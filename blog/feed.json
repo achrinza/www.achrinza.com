@@ -1,8 +1,8 @@
 ---
 ---
 {
-  "version": "https://jsonfeed.org/version/1",
-  "title": {{ site.title | jsonify }},
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": {{ "Rifa's Blog" | jsonify }},
   "description": {% if site.description %}{{ site.description | jsonify }}{% endif %},
   "home_page_url": "{{ site.url }}",
   "feed_url": "{{ page.url | absolute_url }}",
@@ -17,7 +17,7 @@
     {% for post in site.posts limit:10 %}
     {
       "id": "{{ post.url | absolute_url }}",
-      "url": "{{ post.url | absolute_url }}",
+      "url": "{{ post.url | absolute_url }}?utm_source=rss&utm_medium=feed",
       "title": {{ post.title | jsonify }},
       "content_html": {{ post.content | jsonify  }},
       "date_published": "{{ post.date | date_to_rfc822 }}"
